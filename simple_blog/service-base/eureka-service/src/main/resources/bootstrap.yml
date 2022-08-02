@@ -1,0 +1,11 @@
+#端口（800X）
+server:
+  port: 8001
+
+#应用配置
+spring:
+  application:
+    name: eureka-service
+  cloud:
+    config:
+      uri: http://localhost:8000

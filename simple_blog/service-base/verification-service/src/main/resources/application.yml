@@ -1,0 +1,18 @@
+server:
+  port: 8050
+
+spring:
+  application:
+    name: verification-service
+  mail:
+    username: 2831486098@qq.com
+    password: gyuqijelrzzodggi
+    host: smtp.qq.com
+    default-encoding: UTF-8
+    sendfrom: 2831486098@qq.com
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka
+

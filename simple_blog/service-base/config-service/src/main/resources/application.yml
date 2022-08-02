@@ -1,0 +1,35 @@
+server:
+  port: 8000
+
+#配置文件本地路径
+spring:
+  application:
+    name: config-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/blackchess/springcloud.git
+          username: 18780269370
+          password: 18780269370lx
+          default-label: master
+
+  #rabbitMQ配置（服务端）
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: guest
+#    password: guest
+
+#注册组件至eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka
+
+#监控端口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: busrefresh
