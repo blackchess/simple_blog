@@ -1,6 +1,6 @@
 package liaoxin.service.controller;
 
-import com.liaoxin.common.ResultBean;
+import com.liaoxin.common.common.ResultBean;
 import com.liaoxin.domain.Mail;
 import liaoxin.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;

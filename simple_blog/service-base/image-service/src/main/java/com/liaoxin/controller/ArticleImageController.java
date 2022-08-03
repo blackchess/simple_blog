@@ -1,7 +1,7 @@
 package com.liaoxin.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.liaoxin.common.ResultBean;
+import com.liaoxin.common.common.ResultBean;
 import com.liaoxin.domain.ArticleImage;
 import com.liaoxin.service.ArticleImageService;
 import org.springframework.beans.factory.annotation.Autowired;

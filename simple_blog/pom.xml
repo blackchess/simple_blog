@@ -9,7 +9,7 @@
         <module>domain</module>
         <module>common</module>
         <module>service-base</module>
-        <module>security</module>
+        <module>eureka-service</module>
     </modules>
 
     <parent>
@@ -27,15 +27,12 @@
         <java.version>1.8</java.version>
         <spring.cloud-version>2021.0.3</spring.cloud-version>
     </properties>
-    <dependencies>
 
+    <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -51,12 +48,6 @@
                 <version>${spring.cloud-version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>com.liaoxin</groupId>
-                <artifactId>domain</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

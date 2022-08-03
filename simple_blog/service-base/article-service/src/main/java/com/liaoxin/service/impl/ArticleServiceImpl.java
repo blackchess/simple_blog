@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.liaoxin.client.ImageClient;
-import com.liaoxin.common.ResultBean;
+import com.liaoxin.common.common.ResultBean;
 import com.liaoxin.domain.Article;
 import com.liaoxin.domain.ArticleImage;
 import com.liaoxin.domain.vo.ArticleVo;

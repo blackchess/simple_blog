@@ -1,6 +1,6 @@
 package com.liaoxin.controller;
 
-import com.liaoxin.common.ResultBean;
+import com.liaoxin.common.common.ResultBean;
 import com.liaoxin.domain.Label;
 import com.liaoxin.service.LabelService;
 import org.springframework.beans.factory.annotation.Autowired;

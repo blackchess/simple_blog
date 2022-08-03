@@ -3,8 +3,9 @@ package com.liaoxin.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
+import com.liaoxin.bpo.ArticleBPO;
 import com.liaoxin.client.UserClient;
-import com.liaoxin.common.ResultBean;
+import com.liaoxin.common.common.ResultBean;
 import com.liaoxin.domain.Article;
 import com.liaoxin.domain.UmsUser;
 import com.liaoxin.domain.vo.ArticleVo;
@@ -23,6 +24,8 @@ public class ArticleController {
 
     @Autowired
     ArticleService articleService;
+    @Autowired
+    ArticleBPO articleBPO;
     @Autowired
     UserClient userClient;
 
@@ -47,8 +50,8 @@ public class ArticleController {
 
     @GetMapping("/user/{uid}")
     public ResultBean userArticleList(@PathVariable("uid") Long uid,
-                                  @RequestParam("pageNum") Integer pageNum,
-                                  @RequestParam("pageSize") Integer pageSize){
+                                      @RequestParam("pageNum") Integer pageNum,
+                                      @RequestParam("pageSize") Integer pageSize){
         PageDTO<Article> pageDTO = new PageDTO<>(pageNum,pageSize);
         Page<Article> result = articleService.page(pageDTO, new QueryWrapper<Article>().eq("user_id",uid));
         List<ArticleVo> articleVoList = new ArrayList<>();
@@ -63,6 +66,20 @@ public class ArticleController {
         BeanUtils.copyProperties(umsUser,userArticleVO);
         userArticleVO.setArticleVoList(articleVoList);
         return ResultBean.success(userArticleVO);
+    }
+
+    @PostMapping("")
+    public ResultBean insertArticle(@RequestBody ArticleVo articleVo){
+        articleBPO.insertArticleBPO(articleVo);
+        return ResultBean.success();
+    }
+
+    @PutMapping("")
+    public ResultBean updateArticle(@RequestBody ArticleVo articleVo){
+
+        Boolean result = articleBPO.updateArticleBPO(articleVo);
+
+        return ResultBean.success(result);
     }
 
 }

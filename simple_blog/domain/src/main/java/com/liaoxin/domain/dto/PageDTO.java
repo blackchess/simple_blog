@@ -6,7 +6,6 @@ import lombok.Data;
 public class PageDTO {
 
     //搜索条件
-    @N
     private String searchWord;
     //当前页数
     private Integer pageNum;

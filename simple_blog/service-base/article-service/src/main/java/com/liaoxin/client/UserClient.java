@@ -1,6 +1,6 @@
 package com.liaoxin.client;
 
-import com.liaoxin.common.ResultBean;
+import com.liaoxin.common.common.ResultBean;
 import com.liaoxin.domain.UmsUser;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
