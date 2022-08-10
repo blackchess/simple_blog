@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.liaoxin.common.common.ResultBean;
 import com.liaoxin.domain.UmsUser;
 import com.liaoxin.domain.dto.PageDTO;
-import com.liaoxin.domain.dto.UmsUserDto;
+import com.liaoxin.domain.dto.SignUpDTO;
 import com.liaoxin.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +31,9 @@ public class UmsAdminController {
     }
 
     @PutMapping("")
-    public ResultBean update(@RequestBody UmsUserDto umsUserDto){
+    public ResultBean update(@RequestBody SignUpDTO signUpDto){
         UmsUser umsUser = new UmsUser();
-        BeanUtils.copyProperties(umsUserDto, umsUser);
+        BeanUtils.copyProperties(signUpDto, umsUser);
         if(userService.updateById(umsUser)){
             return ResultBean.success();
         }

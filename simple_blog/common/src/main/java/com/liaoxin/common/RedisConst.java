@@ -10,4 +10,7 @@ public class RedisConst {
 
     //用户缓存前缀
     public static final String REDIS_UMS_PREFIX = "USER";
+
+    //验证码缓存前缀
+    public static final String REDIS_CODE_PREFIX = "CODE";
 }

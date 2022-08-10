@@ -15,7 +15,8 @@
         <module>user-service</module>
         <module>image-service</module>
         <module>article-service</module>
-<!--        <module>verification-service</module>-->
+        <module>file-server</module>
+        <module>verification-service</module>
     </modules>
 
     <artifactId>service-base</artifactId>
@@ -36,11 +37,11 @@
             <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.5.1</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>ru.mynewtons</groupId>-->
+<!--            <artifactId>spring-boot-swagger-starter</artifactId>-->
+<!--            <version>1.0.2</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>com.liaoxin</groupId>

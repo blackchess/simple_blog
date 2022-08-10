@@ -2,7 +2,6 @@ package com.liaoxin.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.liaoxin.domain.UmsUser;
-import com.liaoxin.domain.User;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

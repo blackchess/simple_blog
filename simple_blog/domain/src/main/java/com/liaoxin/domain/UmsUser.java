@@ -1,9 +1,10 @@
 package com.liaoxin.domain;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
-import java.beans.Transient;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,12 +17,16 @@ public class UmsUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    //@TableId(type = IdType.AUTO)
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     private String account;
 
     private String password;
+
+    private String phone;
+
+    private String mail;
 
     private Integer role;
 
@@ -37,6 +42,11 @@ public class UmsUser implements Serializable {
     private Date createTime;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date updateTime;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastTime;
+
+
 
 }

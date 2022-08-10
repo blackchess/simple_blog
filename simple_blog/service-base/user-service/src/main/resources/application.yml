@@ -19,3 +19,6 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8001/eureka
+
+sign:
+  mode: 2 #注册模式 1.手机号 2.邮箱

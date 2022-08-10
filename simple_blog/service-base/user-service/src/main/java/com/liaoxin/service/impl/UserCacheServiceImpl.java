@@ -35,13 +35,13 @@ public class UserCacheServiceImpl implements UserCacheService {
 
     @Override
     public void setCode(String account, String code) {
-        String key = RedisConst.REDIS_UMS_DATABASE + ":" + RedisConst.REDIS_UMS_PREFIX + ":" + account;
+        String key = RedisConst.REDIS_UMS_DATABASE + ":" + RedisConst.REDIS_CODE_PREFIX + ":" + account;
         redisCacheService.set(key, code, RedisConst.REDIS_UMS_EXPIRE);
     }
 
     @Override
     public String selectCode(String account) {
-        String key = RedisConst.REDIS_UMS_DATABASE + ":" + RedisConst.REDIS_UMS_PREFIX + ":" + account;
+        String key = RedisConst.REDIS_UMS_DATABASE + ":" + RedisConst.REDIS_CODE_PREFIX + ":" + account;
         return (String) redisCacheService.get(key);
     }
 }

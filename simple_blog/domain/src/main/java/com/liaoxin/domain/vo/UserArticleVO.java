@@ -1,7 +1,6 @@
 package com.liaoxin.domain.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.liaoxin.domain.User;
 import lombok.Data;
 
 import java.io.Serializable;

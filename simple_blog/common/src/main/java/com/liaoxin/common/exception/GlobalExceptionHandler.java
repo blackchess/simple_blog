@@ -6,14 +6,16 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
  * @Auther: liaoxin
- * @Date: 2022/7/22
+ * @Date: 2022/8/8
  **/
+
 @RestControllerAdvice
-public class WebExceptionHandler {
+public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = AppException.class)
-    public ResultBean AppExceptionHandler(AppException appException){
-        return ResultBean.failure();
+    public ResultBean handler(AppException e){
+        e.printStackTrace();
+       return ResultBean.failure(500, e.getMessage());
     }
 
 }

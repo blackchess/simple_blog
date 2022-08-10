@@ -67,4 +67,15 @@ public class JWTUtils {
         return getClaimsFromToken(token).getSubject();
     }
 
+    /**
+     * 判断Token是否过期
+     * @param token
+     * @return
+     */
+    public static Boolean isExpired(String token){
+        Claims claims = getClaimsFromToken(token);
+        Date expiredDate = claims.getExpiration();
+        return expiredDate.before(new Date());
+    }
+
 }

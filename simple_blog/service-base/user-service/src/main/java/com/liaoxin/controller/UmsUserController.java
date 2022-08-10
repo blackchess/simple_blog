@@ -6,6 +6,7 @@ import com.liaoxin.common.common.ResultBean;
 import com.liaoxin.domain.UmsUser;
 import com.liaoxin.domain.dto.*;
 import com.liaoxin.service.UserService;
+import com.liaoxin.service.bpo.UserBPO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,40 +18,24 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("user")
-public class UserController {
+public class UmsUserController {
+
+    @Autowired
+    UserBPO userBPO;
 
     @Autowired
     UserService userService;
 
 
-
     @PostMapping("/signUp")
-    public ResultBean<UmsUser> signUp(@RequestBody UmsUserDto umsUserDto){
-        UmsUser result = userService.signUp(umsUserDto);
-        if(result == null){
-            return ResultBean.failure();
-        }else{
-            return ResultBean.success(result);
-        }
-    }
-
-    @PostMapping("/mailSignUp")
-    public ResultBean<UmsUser> MailsignUp(@RequestBody MailSignUpDTO mailSignUpDTO){
-        UmsUser result = userService.signUpFromMail(mailSignUpDTO);
-        if(result != null){
-            return ResultBean.success(result);
-        }else{
-            return ResultBean.failure();
-        }
+    public ResultBean<UmsUser> signUp(@RequestBody SignUpDTO signUpDTO){
+        UmsUser result = userBPO.signUp(signUpDTO);
+        return ResultBean.success(result);
     }
 
     @PostMapping("/signIn")
-    public ResultBean signIn(@RequestBody UmsSignInDto signInDto, HttpServletRequest request){
-        UmsUser r1 = (UmsUser) request.getAttribute("userDTO");
-        String token = userService.signIn(signInDto);
-        if(token == null){
-            return ResultBean.failure(403,"用户名或密码错误");
-        }
+    public ResultBean signIn(@RequestBody SignInDTO signInDTO){
+        String token = userBPO.signIn(signInDTO);
         Map<String, String> result = new HashMap();
         result.put("tokenHeader","Bearer");
         result.put("token",token);

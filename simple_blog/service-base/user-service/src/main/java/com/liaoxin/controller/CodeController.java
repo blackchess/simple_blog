@@ -4,10 +4,7 @@ import com.liaoxin.common.common.ResultBean;
 import com.liaoxin.domain.Mail;
 import com.liaoxin.service.CodeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Auther: liaoxin
@@ -21,7 +18,7 @@ public class CodeController {
     @Autowired
     CodeService codeService;
 
-    @PostMapping("")
+    @GetMapping("")
     public ResultBean sendCode(@RequestParam("mail") String mailNum){
         Mail mail = new Mail();
         mail.setSendTo(mailNum);
