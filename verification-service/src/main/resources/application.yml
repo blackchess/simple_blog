@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: verification-service
+  profiles:
+    active: dev

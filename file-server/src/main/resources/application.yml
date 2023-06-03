@@ -1,0 +1,30 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: file-server
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 10MB
+  data:
+    mongodb:
+      database: simple_blog
+      username: admin
+      password: 12345678
+      host: 47.113.216.255
+      port: 27017
+      authentication-database: admin
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka
+
+file:
+  saveUrl: E:\upload\
+  #1:本地存储 2: 文件存储系统
+  saveMode: 1

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liaoxin.mapper.ArticleMapper">
+    <select id="selectArticleWithLabel" parameterType="Long" resultType="com.liaoxin.domain.vo.ArticleVo">
+        select
+            a.id as id,
+            a.user_id as user_id,
+            a.title as title,
+            a.content as content,
+            a.view_num as view_num,
+            a.comment_num as comment_num,
+            a.status as status,
+            a.create_time as create_time,
+            a.update_time as update_time
+        from article a left join article_label_reflect al on a.id = al.article_id
+        where al.label_id = 1 and a.status = 1
+    </select>
+
+    <select id="selectArticleCount" parameterType="map">
+        select  count(user_id) as count,
+                u.nick_name as nickName ,
+                year(a.create_time) as year
+        from article a,ums_user u
+        where 1=1 and a.user_id = u.id
+        <if test="time != null and time == 'year'">
+            group by user_id,u.nick_name,year(a.create_time)
+        </if>
+        <if test="time != null and time == 'month'">
+            group by user_id,u.nick_name,month(a.create_time)
+        </if>
+        <if test="time != null and time == 'day'">
+            group by user_id,u.nick_name,day(a.create_time)
+        </if>
+    </select>
+
+</mapper>

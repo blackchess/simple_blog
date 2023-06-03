@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liaoxin.mapper.LabelMapper">
+    <select id="selectLabelWithArticle" parameterType="Long" resultType="com.liaoxin.domain.Label">
+        select l.id as id,
+               l.name as name,
+               l.status as status,
+               l.create_time as create_time,
+               l.update_time as update_time
+        from label l left join article_label_reflect al on l.id = al.label_id
+        where 1=1 and al.article_id = #{id} and l.id = al.label_id and l.status = 1
+    </select>
+</mapper>
