@@ -2,8 +2,8 @@ package com.liaoxin.service.bpo;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.liaoxin.domain.UmsUser;
-import com.liaoxin.model.dto.SignInDTO;
-import com.liaoxin.model.dto.SignUpDTO;
+import com.liaoxin.domain.dto.SignInDTO;
+import com.liaoxin.domain.dto.SignUpDTO;
 
 /**
  * @Auther: liaoxin

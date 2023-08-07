@@ -18,14 +18,14 @@ public interface ArticleBPO {
      * @param articleVo
      * @return
      */
-    Boolean updateArticleBPO(ArticleVo articleVo);
+    void updateArticleBPO(ArticleVo articleVo);
 
     /**
      * 新增文章
      * @param articleVo
      * @return
      */
-    Boolean insertArticleBPO(ArticleVo articleVo);
+    void insertArticleBPO(ArticleVo articleVo);
 
     /**
      * 包含标签、图片的文章列表
@@ -33,5 +33,12 @@ public interface ArticleBPO {
      * @return
      */
     Page<ArticleVo> articleVoList(PageDTO pageDTO);
+
+    /**
+     * 批量删除文章
+     * @param userId        用户主键
+     * @param articleIds    文章主键列
+     */
+    void deleteArticle(Long userId, List<String> articleIds);
 
 }

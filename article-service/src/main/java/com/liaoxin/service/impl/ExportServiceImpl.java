@@ -1,6 +1,5 @@
 package com.liaoxin.service.impl;
 
-import com.alibaba.excel.EasyExcel;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.liaoxin.domain.Article;
 import com.liaoxin.domain.Export;
@@ -42,14 +41,14 @@ public class ExportServiceImpl implements ExportService {
         }
 
         response.setContentType("application/octet-stream");
-        response.setHeader("Content-disposition", "attachment;filename=" + export.getFilename());
-        try {
-            EasyExcel.write(response.getOutputStream(),Article.class).head(export.getHeadList())
-            .autoCloseStream(Boolean.FALSE)
-            .sheet("sheet1")
-            .doWrite(export.getDataList());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        response.setHeader("Content-disposition", "attachment;filename=" + export.getFilename());
+//        try {
+//            EasyExcel.write(response.getOutputStream(),Article.class).head(export.getHeadList())
+//            .autoCloseStream(Boolean.FALSE)
+//            .sheet("sheet1")
+//            .doWrite(export.getDataList());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 }

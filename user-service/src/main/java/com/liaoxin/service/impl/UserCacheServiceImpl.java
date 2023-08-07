@@ -4,7 +4,7 @@ package com.liaoxin.service.impl;
 import com.liaoxin.common.RedisConst;
 import com.liaoxin.common.service.RedisCacheService;
 import com.liaoxin.domain.UmsUser;
-import com.liaoxin.model.vo.UmsUserVo;
+import com.liaoxin.domain.vo.UmsUserVo;
 import com.liaoxin.service.UserCacheService;
 import org.springframework.stereotype.Service;
 

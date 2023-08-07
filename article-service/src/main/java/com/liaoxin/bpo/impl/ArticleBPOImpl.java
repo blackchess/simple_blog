@@ -1,22 +1,25 @@
 package com.liaoxin.bpo.impl;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import com.liaoxin.bpo.ArticleBPO;
 import com.liaoxin.client.ImageClient;
 import com.liaoxin.common.common.ResultBean;
+import com.liaoxin.common.common.WebConst;
+import com.liaoxin.common.exception.AppException;
 import com.liaoxin.domain.Article;
 import com.liaoxin.domain.ArticleImage;
 import com.liaoxin.domain.Label;
 import com.liaoxin.domain.vo.ArticleVo;
 import com.liaoxin.service.ArticleService;
 import com.liaoxin.service.LabelService;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,6 +31,7 @@ import java.util.List;
  **/
 
 @Service
+@Transactional
 public class ArticleBPOImpl implements ArticleBPO {
 
     @Autowired
@@ -40,27 +44,41 @@ public class ArticleBPOImpl implements ArticleBPO {
     ImageClient imageClient;
 
     @Override
-    @Transactional
-    public Boolean updateArticleBPO(ArticleVo articleVo) {
-        Boolean result = false;
+    @GlobalTransactional
+    public void updateArticleBPO(ArticleVo articleVo) {
         //更新文章基本信息
         Article article = new Article();
         BeanUtils.copyProperties(articleVo,article);
         articleService.updateById(article);
-
-        result = labelService.updateBatchById(articleVo.getLabelList());
-
-        return result;
+        labelService.updateBatchById(articleVo.getLabelList());
     }
 
     @Override
-    public Boolean insertArticleBPO(ArticleVo articleVo) {
+    @GlobalTransactional
+    public void insertArticleBPO(ArticleVo articleVo) {
+        //文章基本信息
         Article article = new Article();
-        BeanUtils.copyProperties(articleVo,article);
-        article.setStatus(1);
+        article.setTitle(articleVo.getTitle());
+        article.setUserId(articleVo.getUserId());
+        article.setContent(articleVo.getContent());
+        article.setDiscription(articleVo.getDiscription());
+        article.setCoverUrl(articleVo.getCoverUrl());
+        article.setStatus(WebConst.STATUS_1);
         article.setCreateTime(new Date());
         article.setUpdateTime(new Date());
-        return articleService.save(article);
+        articleService.save(article);
+
+        if(articleVo.getImageList() != null){
+            //文章图片信息
+            for(ArticleImage articleImage : articleVo.getImageList()){
+                articleImage.setArticleId(article.getId());
+                articleImage.setStatus(WebConst.STATUS_1);
+                articleImage.setCreateTime(new Date());
+                articleImage.setUpdateTime(new Date());
+                imageClient.addNewArticleImage(articleImage);
+            }
+        }
+
     }
 
     @Override
@@ -81,6 +99,18 @@ public class ArticleBPOImpl implements ArticleBPO {
         Page<ArticleVo> articleVoPage = new Page<>();
         BeanUtils.copyProperties(articlePage,articleVoPage);
         return articleVoPage;
+    }
+
+    @Override
+    public void deleteArticle(Long userId, List<String> articleIds) {
+        List<Article> articleList = articleService.listByIds(articleIds);
+        for(Article article : articleList){
+            if(!userId.equals(article.getUserId())){
+                throw new AppException(article.getTitle() + "的拥有者不是本人");
+            }
+            article.setStatus(WebConst.STATUS_0);
+        }
+        articleService.updateBatchById(articleList);
     }
 
 }

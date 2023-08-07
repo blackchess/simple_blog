@@ -2,15 +2,17 @@ package com.liaoxin.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import com.liaoxin.common.common.ResultBean;
+import com.liaoxin.common.common.WebConst;
 import com.liaoxin.common.exception.AppException;
-import com.liaoxin.common.model.PageDTO;
+import com.liaoxin.common.utils.JWTUtils;
 import com.liaoxin.domain.UmsUser;
 import com.liaoxin.domain.dto.*;
-import com.liaoxin.model.dto.SignInDTO;
-import com.liaoxin.model.dto.SignUpDTO;
+import com.liaoxin.service.UserCacheService;
 import com.liaoxin.service.UserService;
 import com.liaoxin.service.bpo.UserBPO;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -71,6 +73,21 @@ public class UmsUserController extends BaseController {
     }
 
     /**
+     * 账户登出
+     * @param servletRequest
+     */
+    @PostMapping ("/signOut")
+    public ResultBean signOut(HttpServletRequest servletRequest){
+        String token = servletRequest.getHeader(WebConst.TOKEN);
+        if(StringUtils.isEmpty(token) || StringUtils.isBlank(token)){
+            throw new AppException("缺少登录凭证");
+        }
+        String account = JWTUtils.deCodeStringFromToken(token);
+        userCacheService.deleteUser(account);
+        return ResultBean.success();
+    }
+
+    /**
      * 分页查询
      * @param current
      * @param size
@@ -90,10 +107,10 @@ public class UmsUserController extends BaseController {
     public ResultBean<Page<UmsUser>> page(@RequestBody PageDTO pageDTO){
         QueryWrapper<UmsUser> wrapper = new QueryWrapper();
         wrapper.select(UmsUser.class, info -> !info.getColumn().equals("password"));
-        if(pageDTO.getSearchWord() != null){
-            wrapper.like("nick_name",pageDTO.getSearchWord());
-        }
-        return ResultBean.success(userService.page(new Page(pageDTO.getPageNum(), pageDTO.getPageSize()),wrapper));
+//        if(pageDTO() != null){
+//            wrapper.like("nick_name",pageDTO.getSearchWord());
+//        }
+        return ResultBean.success(userService.page(new Page(pageDTO.getCurrent(), pageDTO.getSize()),wrapper));
     }
 
     /**

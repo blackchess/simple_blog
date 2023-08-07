@@ -1,7 +1,8 @@
 package com.liaoxin.service;
 
+
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.liaoxin.entity.CommentDomain;
+import com.liaoxin.domain.CommentDomain;
 
 /**
  * @Auther: liaoxin

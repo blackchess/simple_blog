@@ -1,7 +1,7 @@
 package com.liaoxin.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.liaoxin.entity.CommentDomain;
+import com.liaoxin.domain.CommentDomain;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

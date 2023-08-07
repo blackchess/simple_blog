@@ -1,6 +1,5 @@
 package com.liaoxin.domain.vo;
 
-import com.alibaba.excel.annotation.ExcelProperty;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.liaoxin.domain.ArticleImage;
 import com.liaoxin.domain.Label;
@@ -24,21 +23,18 @@ public class ArticleVo implements Serializable {
     private Long userId;
 
     private String title;
-    @ExcelProperty("内容")
+
+    private String coverUrl;
     private String content;
-    @ExcelProperty("关注数")
+    private String discription;
     private Integer viewNum;
-    @ExcelProperty("评论数")
     private Integer commentNum;
-    @ExcelProperty("状态")
     private Integer status;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @ExcelProperty("创建时间")
     private Date createTime;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @ExcelProperty("更新时间")
     private Date updateTime;
 
     private UmsUser umsUser;

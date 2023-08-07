@@ -7,7 +7,7 @@ import com.liaoxin.bpo.CommentBPO;
 import com.liaoxin.common.common.WebConst;
 import com.liaoxin.common.exception.AppException;
 import com.liaoxin.domain.Article;
-import com.liaoxin.entity.CommentDomain;
+import com.liaoxin.domain.CommentDomain;
 import com.liaoxin.service.ArticleService;
 import com.liaoxin.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;

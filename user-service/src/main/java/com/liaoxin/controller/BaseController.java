@@ -14,7 +14,6 @@ import javax.annotation.Resource;
  * @Date: 2022/9/30
  **/
 
-@RestController
 public class BaseController {
 
     @Resource

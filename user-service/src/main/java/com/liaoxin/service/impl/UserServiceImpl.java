@@ -13,12 +13,12 @@ import com.liaoxin.common.utils.SecretUtils;
 import com.liaoxin.domain.Mail;
 import com.liaoxin.domain.UmsRole;
 import com.liaoxin.domain.UmsUser;
+import com.liaoxin.domain.dto.SignInDTO;
+import com.liaoxin.domain.dto.SignUpDTO;
 import com.liaoxin.domain.dto.UpdatePasswordDTO;
+import com.liaoxin.domain.vo.UmsUserVo;
 import com.liaoxin.mapper.UmsRoleMapper;
 import com.liaoxin.mapper.UserMapper;
-import com.liaoxin.model.dto.SignInDTO;
-import com.liaoxin.model.dto.SignUpDTO;
-import com.liaoxin.model.vo.UmsUserVo;
 import com.liaoxin.service.CodeService;
 import com.liaoxin.service.UmsRoleService;
 import com.liaoxin.service.UserCacheService;
@@ -197,9 +197,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UmsUser> implements
     @Override
     public int updatePassword(UpdatePasswordDTO dto) {
         UmsUser result = userMapper.selectOne(new QueryWrapper<UmsUser>().eq("id", dto.getUserId())
-                .eq("password", dto.getOldPasswordMD5()));
+                .eq("password", SecretUtils.MD5Encoding(dto.getOldPassword(), WebConst.SECURT)));
         if(result != null) {
-            result.setPassword(dto.getNewPasswordMD5());
+            result.setPassword(SecretUtils.MD5Encoding(dto.getNewPassword(), WebConst.SECURT));
         }
         return userMapper.updateById(result);
     }

@@ -5,8 +5,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.liaoxin.domain.UmsUser;
 import com.liaoxin.domain.dto.*;
-import com.liaoxin.model.dto.SignInDTO;
-import com.liaoxin.model.dto.SignUpDTO;
 
 
 public interface UserService extends IService<UmsUser> {

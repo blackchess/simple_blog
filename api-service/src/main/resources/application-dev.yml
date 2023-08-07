@@ -8,21 +8,25 @@ spring:
       enabled: true
       routes:
         - id: user-service
-          uri: http://127.0.0.1:8040
+          uri: lb://user-service
           predicates:
             - Path=/user/**,/code/**
         - id: article-service
           uri: lb://article-service
           predicates:
-            - Path=/article/**
+            - Path=/article/**,/label/**
         - id: verification-service
-          uri: http://127.0.0.1:8050
+          uri: lb://verification-service
           predicates:
             - Path=/verification/**
+        - id: file-service
+          uri: lb://file-server
+          predicates:
+            - Path=/file/**,/image/**
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
-        namespace: simple_blog
+        server-addr: 121.37.71.204:8848
+        namespace: simple-blog
   redis:
     host: 121.37.71.204
     port: 8888
@@ -34,3 +38,4 @@ request:
     - /user/signUp
     - /user/signIn
     - /code/phoneCode
+    - /image/**

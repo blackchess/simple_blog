@@ -2,12 +2,11 @@ package com.liaoxin.controller;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import com.liaoxin.common.common.ResultBean;
 import com.liaoxin.common.common.WebConst;
 import com.liaoxin.common.exception.AppException;
-import com.liaoxin.entity.CommentDomain;
+import com.liaoxin.domain.CommentDomain;
 import com.liaoxin.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +36,7 @@ public class CommentController {
      * @param size      分页大小
      */
     @GetMapping("{isParent}")
-    public ResultBean<Page<CommentDomain>> fetchCommentList(@PathVariable("isParent") Boolean isParent,
+    public ResultBean fetchCommentList(@PathVariable("isParent") Boolean isParent,
                                                             @RequestParam(value = "parentId",required = false) Long parentId,
                                                             @RequestParam("articleId") Long articleId,
                                                             @RequestParam("current") Long current,

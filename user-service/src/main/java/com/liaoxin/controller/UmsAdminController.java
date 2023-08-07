@@ -1,10 +1,10 @@
 package com.liaoxin.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import com.liaoxin.common.common.ResultBean;
-import com.liaoxin.common.model.PageDTO;
 import com.liaoxin.domain.UmsUser;
-import com.liaoxin.model.dto.SignUpDTO;
+import com.liaoxin.domain.dto.SignUpDTO;
 import com.liaoxin.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class UmsAdminController {
 
     @GetMapping("")
     public ResultBean<UmsUser> list(@RequestBody PageDTO pageDTO){
-        Page<UmsUser> page = new Page<>(pageDTO.getPageNum(), pageDTO.getPageSize());
+        Page<UmsUser> page = new Page<>(pageDTO.getCurrent(), pageDTO.getSize());
         return ResultBean.success(userService.page(page));
     }
 

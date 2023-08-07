@@ -43,7 +43,7 @@ public class VerificationController {
             case "2" :
                 mailService.sendHTMLMail(mailEntity);
             case "3" :
-                mailService.sendAttachMail();
+                //mailService.sendAttachMail();
         }
         mailService.sendSimpleMail(mailEntity);
         return ResultBean.success("邮件已发送至邮箱，请前往查看！");

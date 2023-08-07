@@ -2,7 +2,7 @@ package com.liaoxin.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.liaoxin.common.exception.AppException;
-import com.liaoxin.entity.CommentDomain;
+import com.liaoxin.domain.CommentDomain;
 import com.liaoxin.mapper.CommentMapper;
 import com.liaoxin.service.CommentService;
 import com.liaoxin.service.lock.CompareAndSwap;

@@ -2,7 +2,7 @@ package com.liaoxin.service;
 
 
 import com.liaoxin.domain.UmsUser;
-import com.liaoxin.model.vo.UmsUserVo;
+import com.liaoxin.domain.vo.UmsUserVo;
 
 public interface UserCacheService {
 

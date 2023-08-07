@@ -22,6 +22,11 @@ public class WebConst {
      */
     public final static Integer CHECK_CODE_LEN = 6;
 
+    /**
+     * JWT请求头部标识
+     */
+    public final static String TOKEN = "Bearer";
+
 
 
 }
