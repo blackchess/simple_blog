@@ -2,9 +2,9 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
-        namespace: simple_blog
+        server-addr: 121.37.71.204:8848
+        namespace: simple-blog
       config:
-        server-addr: 127.0.0.1:8848
+        server-addr: 121.37.71.204:8848
         file-extension: yaml
-        namespace: simple_blog
+        namespace: simple-blog

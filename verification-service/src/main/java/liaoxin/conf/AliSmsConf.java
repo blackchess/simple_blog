@@ -23,6 +23,10 @@ public class AliSmsConf {
 
     private String endpoint;
 
+    private String templateCode;
+
+    private String signName;
+
     /**
      * 创建客户端
      */

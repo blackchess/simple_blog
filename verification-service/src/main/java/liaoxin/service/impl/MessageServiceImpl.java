@@ -13,6 +13,8 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 /**
  * @Auther: liaoxin
  * @Date: 2023/1/11
@@ -20,7 +22,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MessageServiceImpl implements MessageService {
 
-    @Autowired
+    @Resource
     Client client;
 
     @Override
@@ -40,13 +42,5 @@ public class MessageServiceImpl implements MessageService {
         }
     }
 
-    @RabbitHandler
-    @RabbitListener(queues = "phoneQueue")
-    public void fetchMessage(String message) {
-        SmsEntity smsEntity = JSONObject.parseObject(message,SmsEntity.class);
-        if(smsEntity == null){
-            throw new AppException("获取信息内容错误");
-        }
-        sendMessage(smsEntity);
-    }
+
 }

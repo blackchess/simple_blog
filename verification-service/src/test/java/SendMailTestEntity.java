@@ -42,8 +42,6 @@ public class SendMailTestEntity {
         mailEntity.setSubject("Blog邮件测试");
         mailEntity.setText("测试邮件");
         Map<String, File> map = new HashMap<>();
-        //map.put("测试.jpg",new File("src/main/resources/test.jpg"));
-        //map.put("测试.gif",new File("src/main/resources/test2.gif"));
         mailEntity.setAttach(map);
         mailService.sendAttachMail(mailEntity);
     }
