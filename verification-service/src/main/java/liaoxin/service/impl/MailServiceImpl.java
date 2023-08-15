@@ -26,12 +26,10 @@ import java.util.Date;
 @Service
 public class MailServiceImpl implements MailService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MailServiceImpl.class);
-
     @Value("${spring.mail.sendfrom}")
     private String sendFrom;
 
-    @Autowired
+    @Resource
     JavaMailSender javaMailSender;
 
     @Override
