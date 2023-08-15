@@ -1,6 +1,5 @@
 package liaoxin.service.impl;
 
-import com.alibaba.fastjson.JSONObject;
 import com.aliyun.dysmsapi20170525.Client;
 import com.aliyun.dysmsapi20170525.models.SendSmsRequest;
 import com.aliyun.dysmsapi20170525.models.SendSmsResponse;
@@ -8,9 +7,6 @@ import com.liaoxin.common.common.WebConst;
 import com.liaoxin.common.exception.AppException;
 import liaoxin.model.SmsEntity;
 import liaoxin.service.MessageService;
-import org.springframework.amqp.rabbit.annotation.RabbitHandler;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
